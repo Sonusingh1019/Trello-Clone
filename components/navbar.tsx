@@ -1,13 +1,15 @@
-// "use client"
+
+"use client"
+
 
 import { SignInButton, SignUpButton, useUser } from "@clerk/nextjs";
 import { ArrowRight, } from "lucide-react";
-import { Button } from "./button";
+import { Button } from "./ui/button";
 import { Trello } from "lucide-react";
 import  Link  from "next/link";
 
-export default function navbar() {
-  const { isSignedIn , user} = useUser()
+const Navbar= ()=> {
+   const { isSignedIn , user} = useUser();
   return (
     <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50 ">
       <div className="container mx-auto px-4 py-3 sm:py-4 flex items-center justify-between">
@@ -19,7 +21,7 @@ export default function navbar() {
         </div>
 
         <div className="flex items-center space-x-4 sm:space-x-6">
-          {isSignedIn ? (
+           {isSignedIn ? ( 
             <div className="flex flex-col sm:flex-row items-end sm:items-center space-y-1 sm:space-y-0 sm:space-x-4 ">
               <span  className="text-xs sm:text-sm text-gray-600 hidden sm:block">
                 Welcome,{user.firstName ?? user.emailAddresses[0].emailAddress}
@@ -30,7 +32,7 @@ export default function navbar() {
                 </Button>
                 </Link>
             </div>
-          ) : (
+          ) : ( 
             <div>
               <SignInButton>
                 <Button
@@ -53,3 +55,4 @@ export default function navbar() {
     </header>
   );
 }
+export default Navbar
